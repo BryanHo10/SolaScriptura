@@ -9,7 +9,7 @@ const ReadingView = (props) => {
 	if (!isEmpty(bookId) || !isEmpty(chapterId)) {
 		return (
 			<div>
-				<Link to="/">Home</Link>
+				<Link to="/bible">Back to Selection</Link>
 				<ScriptureView bookId={bookId} chapterId={chapterId} />
 			</div>
 		);

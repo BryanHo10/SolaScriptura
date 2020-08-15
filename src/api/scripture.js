@@ -1,4 +1,3 @@
-const Base_URL = "https://api.esv.org";
 const GetPassageText_URL = `/v3/passage/text`;
 const Token = "9a6226adb27b5b293603240118251c43b1951d99";
 const getHeaders = () => ({
@@ -14,9 +13,8 @@ const getSearchParams = (params) => {
 
 const getPassageText = (passage) => {
 	const headers = getHeaders();
-	debugger;
 	const result = fetch(
-		`/api${GetPassageText_URL}?${getSearchParams({
+		`${GetPassageText_URL}?${getSearchParams({
 			q: passage,
 		})}`,
 		{ headers }
