@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Card, Container } from "react-bootstrap";
+import classname from "classnames";
 import { BOOKS } from "../../../constants/books";
 import "./index.css";
+import { useHistory } from "react-router-dom";
 
-const ChapterSelectionView = ({ count }) => {
+const ChapterSelectionView = ({ bookId, count }) => {
+	const history = useHistory();
 	const selectVerse = (event, num) => {
 		event.stopPropagation();
-		console.log(num);
+		history.push(`/bible/${bookId}/${num}`);
 	};
 	return (
 		<Container fluid className="chapter-select">
@@ -33,28 +36,35 @@ const SelectionView = (props) => {
 	return (
 		<Container fluid>
 			<Row>
-				{BOOKS.map((book) => (
-					<Col lg={3}>
-						<Card
-							className="clickable"
-							onClick={() =>
-								setSelectedBook((selectedBook) =>
-									selectedBook === book.name ? null : book.name
-								)
-							}
-						>
-							<Card.Body>
-								<Card.Title>{book.name}</Card.Title>
-								{book.name == selectedBook && (
-									<ChapterSelectionView count={book.meta.total_chapters} />
-								)}
-							</Card.Body>
-						</Card>
-					</Col>
-				))}
+				{BOOKS.map((book) => {
+					const isSelected = selectedBook === book.name;
+					return (
+						<Col lg={3}>
+							<Card
+								className={classname("", { "book-selectable": !isSelected })}
+								onClick={() =>
+									isSelected
+										? null
+										: setSelectedBook((selectedBook) => book.name)
+								}
+							>
+								<Card.Body>
+									<Card.Title>{book.name}</Card.Title>
+									{book.name == selectedBook && (
+										<ChapterSelectionView
+											bookId={book.name}
+											count={book.meta.total_chapters}
+										/>
+									)}
+								</Card.Body>
+							</Card>
+						</Col>
+					);
+				})}
 			</Row>
 		</Container>
 	);
 };
+
 SelectionView.propTypes = {};
 export default SelectionView;

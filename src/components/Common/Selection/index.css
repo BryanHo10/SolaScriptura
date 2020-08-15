@@ -10,10 +10,16 @@
 }
 .chapter-select .chapter-view:hover {
 	background-color: rgb(170, 170, 170);
+	transition: background-color 0.5s;
 }
 .chapter-select .row {
 	justify-content: center;
 }
-.clickable {
+.book-selectable {
 	cursor: pointer;
+}
+.book-selectable:hover {
+	color: white;
+	background-color: rgb(0, 69, 148);
+	transition: background-color 0.5s;
 }
