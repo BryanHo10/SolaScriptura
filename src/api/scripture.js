@@ -1,7 +1,6 @@
 const GetPassageText_URL = `/v3/passage/text`;
-const Token = "9a6226adb27b5b293603240118251c43b1951d99";
 const getHeaders = () => ({
-	Authorization: `Token ${Token}`,
+	Authorization: `Token ${process.env.REACT_APP_ESV_TOKEN}`,
 });
 const getSearchParams = (params) => {
 	let searchParams = [];
@@ -26,7 +25,9 @@ const getPassageText = ({
 			"include-headings": includeHeadings,
 		})}`,
 		{ headers }
-	).then((response) => response.json());
+	).then((response) => {
+		return response.json();
+	});
 	return result;
 };
 export { getPassageText };

@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Row, Container } from "react-bootstrap";
-import { last, head, isInteger } from "lodash";
+import { last, head } from "lodash";
 import { useHistory } from "react-router-dom";
 import { getPassageText } from "../../../api/scripture";
 import { parseTextResponse, getBookData } from "../../../utils/parse";
 import LoadingView from "../../Common/Loading";
 import "./ScriptureView.css";
 import NavigationView from "../../Common/Navigation";
+import ErrorView from "../../Common/Error";
 import { BOOKS } from "../../../constants/books";
 
 const ScriptureView = ({ bookId, chapterId }) => {
 	const [scriptureComponent, setScriptureComponent] = useState([]);
 	const [loadingState, setLoadingState] = useState(false);
+	const [failureState, setFailureState] = useState(false);
+	const [errorMessage, setErrorMessage] = useState("");
 
 	const history = useHistory();
 
@@ -24,9 +27,14 @@ const ScriptureView = ({ bookId, chapterId }) => {
 			includeHeadings: false,
 		};
 		getPassageText(config).then((data) => {
-			const passage = parseTextResponse(data);
-			setScriptureComponent(passage);
-			setLoadingState(false);
+			if (data.detail) {
+				setErrorMessage(data.detail);
+				setFailureState(true);
+			} else {
+				const passage = parseTextResponse(data);
+				setScriptureComponent(passage);
+				setLoadingState(false);
+			}
 		});
 	}, [bookId, chapterId]);
 
@@ -64,7 +72,13 @@ const ScriptureView = ({ bookId, chapterId }) => {
 
 		history.push(`/bible/${prevBookId}/${prevChapterId}`);
 	};
-
+	if (failureState) {
+		return (
+			<Container>
+				<ErrorView message={errorMessage} />
+			</Container>
+		);
+	}
 	return (
 		<Container>
 			<Row className="scripture-view">
