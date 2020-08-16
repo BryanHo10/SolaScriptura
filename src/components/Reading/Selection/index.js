@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import classname from "classnames";
 import { BOOKS } from "../../../constants/books";
@@ -18,6 +18,7 @@ const ChapterSelectionView = ({ bookId, count }) => {
 					const chapter_num = index + 1;
 					return (
 						<Col
+							key={`chapter_${index}`}
 							md={2}
 							className="chapter-view"
 							onClick={(e) => selectVerse(e, chapter_num)}
@@ -36,10 +37,10 @@ const SelectionView = (props) => {
 	return (
 		<Container fluid>
 			<Row>
-				{BOOKS.map((book) => {
+				{BOOKS.map((book, index) => {
 					const isSelected = selectedBook === book.name;
 					return (
-						<Col lg={3}>
+						<Col key={`book_${index}`} lg={3}>
 							<Card
 								className={classname("", { "book-selectable": !isSelected })}
 								onClick={() =>
@@ -50,7 +51,7 @@ const SelectionView = (props) => {
 							>
 								<Card.Body>
 									<Card.Title>{book.name}</Card.Title>
-									{book.name == selectedBook && (
+									{book.name === selectedBook && (
 										<ChapterSelectionView
 											bookId={book.name}
 											count={book.meta.total_chapters}

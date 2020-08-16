@@ -57,6 +57,7 @@ const BOOKS = [
 				{ verses: 26 },
 			],
 		},
+		id: 0,
 	},
 	{
 		name: "Exodus",
@@ -106,6 +107,7 @@ const BOOKS = [
 				{ verses: 38 },
 			],
 		},
+		id: 1,
 	},
 	{
 		name: "Leviticus",
@@ -142,6 +144,7 @@ const BOOKS = [
 				{ verses: 34 },
 			],
 		},
+		id: 2,
 	},
 	{
 		name: "Numbers",
@@ -187,6 +190,7 @@ const BOOKS = [
 				{ verses: 13 },
 			],
 		},
+		id: 3,
 	},
 	{
 		name: "Deuteronomy",
@@ -230,6 +234,7 @@ const BOOKS = [
 				{ verses: 12 },
 			],
 		},
+		id: 4,
 	},
 	{
 		name: "Joshua",
@@ -263,6 +268,7 @@ const BOOKS = [
 				{ verses: 33 },
 			],
 		},
+		id: 5,
 	},
 	{
 		name: "Judges",
@@ -293,6 +299,7 @@ const BOOKS = [
 				{ verses: 25 },
 			],
 		},
+		id: 6,
 	},
 	{
 		name: "Ruth",
@@ -301,6 +308,7 @@ const BOOKS = [
 			total_chapters: 4,
 			content: [{ verses: 22 }, { verses: 23 }, { verses: 18 }, { verses: 22 }],
 		},
+		id: 7,
 	},
 	{
 		name: "1 Samuel",
@@ -341,6 +349,7 @@ const BOOKS = [
 				{ verses: 13 },
 			],
 		},
+		id: 8,
 	},
 	{
 		name: "2 Samuel",
@@ -374,6 +383,7 @@ const BOOKS = [
 				{ verses: 25 },
 			],
 		},
+		id: 9,
 	},
 	{
 		name: "1 Kings",
@@ -405,6 +415,7 @@ const BOOKS = [
 				{ verses: 53 },
 			],
 		},
+		id: 10,
 	},
 	{
 		name: "2 Kings",
@@ -439,6 +450,7 @@ const BOOKS = [
 				{ verses: 30 },
 			],
 		},
+		id: 11,
 	},
 	{
 		name: "1 Chronicles",
@@ -477,6 +489,7 @@ const BOOKS = [
 				{ verses: 30 },
 			],
 		},
+		id: 12,
 	},
 	{
 		name: "2 Chronicles",
@@ -522,6 +535,7 @@ const BOOKS = [
 				{ verses: 23 },
 			],
 		},
+		id: 13,
 	},
 	{
 		name: "Ezra",
@@ -541,6 +555,7 @@ const BOOKS = [
 				{ verses: 44 },
 			],
 		},
+		id: 14,
 	},
 	{
 		name: "Nehemiah",
@@ -563,6 +578,7 @@ const BOOKS = [
 				{ verses: 31 },
 			],
 		},
+		id: 15,
 	},
 	{
 		name: "Esther",
@@ -582,6 +598,7 @@ const BOOKS = [
 				{ verses: 3 },
 			],
 		},
+		id: 16,
 	},
 	{
 		name: "Job",
@@ -633,6 +650,7 @@ const BOOKS = [
 				{ verses: 17 },
 			],
 		},
+		id: 17,
 	},
 	{
 		name: "Psalms",
@@ -792,6 +810,7 @@ const BOOKS = [
 				{ verses: 6 },
 			],
 		},
+		id: 18,
 	},
 	{
 		name: "Proverbs",
@@ -832,6 +851,7 @@ const BOOKS = [
 				{ verses: 31 },
 			],
 		},
+		id: 19,
 	},
 	{
 		name: "Ecclesiastes",
@@ -853,6 +873,7 @@ const BOOKS = [
 				{ verses: 14 },
 			],
 		},
+		id: 20,
 	},
 	{
 		name: "Song of Solomon",
@@ -870,6 +891,7 @@ const BOOKS = [
 				{ verses: 14 },
 			],
 		},
+		id: 21,
 	},
 	{
 		name: "Isaiah",
@@ -945,6 +967,7 @@ const BOOKS = [
 				{ verses: 24 },
 			],
 		},
+		id: 22,
 	},
 	{
 		name: "Jeremiah",
@@ -1006,6 +1029,7 @@ const BOOKS = [
 				{ verses: 34 },
 			],
 		},
+		id: 23,
 	},
 	{
 		name: "Lamentations",
@@ -1020,6 +1044,7 @@ const BOOKS = [
 				{ verses: 22 },
 			],
 		},
+		id: 24,
 	},
 	{
 		name: "Ezekiel",
@@ -1077,6 +1102,7 @@ const BOOKS = [
 				{ verses: 35 },
 			],
 		},
+		id: 25,
 	},
 	{
 		name: "Daniel",
@@ -1098,6 +1124,7 @@ const BOOKS = [
 				{ verses: 13 },
 			],
 		},
+		id: 26,
 	},
 	{
 		name: "Hosea",
@@ -1121,6 +1148,7 @@ const BOOKS = [
 				{ verses: 9 },
 			],
 		},
+		id: 27,
 	},
 	{
 		name: "Joel",
@@ -1129,6 +1157,7 @@ const BOOKS = [
 			total_chapters: 3,
 			content: [{ verses: 20 }, { verses: 32 }, { verses: 21 }],
 		},
+		id: 28,
 	},
 	{
 		name: "Amos",
@@ -1147,11 +1176,13 @@ const BOOKS = [
 				{ verses: 15 },
 			],
 		},
+		id: 29,
 	},
 	{
 		name: "Obadiah",
 		aliases: ["Obad", "Oba"],
 		meta: { total_chapters: 1, content: [{ verses: 22 }] },
+		id: 30,
 	},
 	{
 		name: "Jonah",
@@ -1160,6 +1191,7 @@ const BOOKS = [
 			total_chapters: 4,
 			content: [{ verses: 17 }, { verses: 10 }, { verses: 10 }, { verses: 11 }],
 		},
+		id: 31,
 	},
 	{
 		name: "Micah",
@@ -1176,6 +1208,7 @@ const BOOKS = [
 				{ verses: 20 },
 			],
 		},
+		id: 32,
 	},
 	{
 		name: "Nahum",
@@ -1184,6 +1217,7 @@ const BOOKS = [
 			total_chapters: 3,
 			content: [{ verses: 15 }, { verses: 13 }, { verses: 19 }],
 		},
+		id: 33,
 	},
 	{
 		name: "Habakkuk",
@@ -1192,6 +1226,7 @@ const BOOKS = [
 			total_chapters: 3,
 			content: [{ verses: 17 }, { verses: 20 }, { verses: 19 }],
 		},
+		id: 34,
 	},
 	{
 		name: "Zephaniah",
@@ -1200,11 +1235,13 @@ const BOOKS = [
 			total_chapters: 3,
 			content: [{ verses: 18 }, { verses: 15 }, { verses: 20 }],
 		},
+		id: 35,
 	},
 	{
 		name: "Haggai",
 		aliases: ["Hag"],
 		meta: { total_chapters: 2, content: [{ verses: 15 }, { verses: 23 }] },
+		id: 36,
 	},
 	{
 		name: "Zechariah",
@@ -1228,6 +1265,7 @@ const BOOKS = [
 				{ verses: 21 },
 			],
 		},
+		id: 37,
 	},
 	{
 		name: "Malachi",
@@ -1236,6 +1274,7 @@ const BOOKS = [
 			total_chapters: 4,
 			content: [{ verses: 14 }, { verses: 17 }, { verses: 18 }, { verses: 6 }],
 		},
+		id: 38,
 	},
 	{
 		name: "Matthew",
@@ -1273,6 +1312,7 @@ const BOOKS = [
 				{ verses: 20 },
 			],
 		},
+		id: 39,
 	},
 	{
 		name: "Mark",
@@ -1298,6 +1338,7 @@ const BOOKS = [
 				{ verses: 20 },
 			],
 		},
+		id: 40,
 	},
 	{
 		name: "Luke",
@@ -1331,6 +1372,7 @@ const BOOKS = [
 				{ verses: 53 },
 			],
 		},
+		id: 41,
 	},
 	{
 		name: "John",
@@ -1361,6 +1403,7 @@ const BOOKS = [
 				{ verses: 25 },
 			],
 		},
+		id: 42,
 	},
 	{
 		name: "Acts",
@@ -1398,6 +1441,7 @@ const BOOKS = [
 				{ verses: 30 },
 			],
 		},
+		id: 43,
 	},
 	{
 		name: "Romans",
@@ -1423,6 +1467,7 @@ const BOOKS = [
 				{ verses: 26 },
 			],
 		},
+		id: 44,
 	},
 	{
 		name: "1 Corinthians",
@@ -1448,6 +1493,7 @@ const BOOKS = [
 				{ verses: 24 },
 			],
 		},
+		id: 45,
 	},
 	{
 		name: "2 Corinthians",
@@ -1470,6 +1516,7 @@ const BOOKS = [
 				{ verses: 14 },
 			],
 		},
+		id: 46,
 	},
 	{
 		name: "Galatians",
@@ -1485,6 +1532,7 @@ const BOOKS = [
 				{ verses: 18 },
 			],
 		},
+		id: 47,
 	},
 	{
 		name: "Ephesians",
@@ -1500,6 +1548,7 @@ const BOOKS = [
 				{ verses: 24 },
 			],
 		},
+		id: 48,
 	},
 	{
 		name: "Philippians",
@@ -1508,6 +1557,7 @@ const BOOKS = [
 			total_chapters: 4,
 			content: [{ verses: 30 }, { verses: 30 }, { verses: 21 }, { verses: 24 }],
 		},
+		id: 49,
 	},
 	{
 		name: "Colossians",
@@ -1516,6 +1566,7 @@ const BOOKS = [
 			total_chapters: 4,
 			content: [{ verses: 29 }, { verses: 23 }, { verses: 25 }, { verses: 18 }],
 		},
+		id: 50,
 	},
 	{
 		name: "1 Thessalonians",
@@ -1535,6 +1586,7 @@ const BOOKS = [
 				{ verses: 28 },
 			],
 		},
+		id: 51,
 	},
 	{
 		name: "2 Thessalonians",
@@ -1548,6 +1600,7 @@ const BOOKS = [
 			total_chapters: 3,
 			content: [{ verses: 12 }, { verses: 17 }, { verses: 18 }],
 		},
+		id: 52,
 	},
 	{
 		name: "1 Timothy",
@@ -1563,6 +1616,7 @@ const BOOKS = [
 				{ verses: 21 },
 			],
 		},
+		id: 53,
 	},
 	{
 		name: "2 Timothy",
@@ -1571,6 +1625,7 @@ const BOOKS = [
 			total_chapters: 4,
 			content: [{ verses: 18 }, { verses: 26 }, { verses: 17 }, { verses: 22 }],
 		},
+		id: 54,
 	},
 	{
 		name: "Titus",
@@ -1579,11 +1634,13 @@ const BOOKS = [
 			total_chapters: 3,
 			content: [{ verses: 16 }, { verses: 15 }, { verses: 15 }],
 		},
+		id: 55,
 	},
 	{
 		name: "Philemon",
 		aliases: ["Phlm"],
 		meta: { total_chapters: 1, content: [{ verses: 26 }] },
+		id: 56,
 	},
 	{
 		name: "Hebrews",
@@ -1606,6 +1663,7 @@ const BOOKS = [
 				{ verses: 25 },
 			],
 		},
+		id: 57,
 	},
 	{
 		name: "James",
@@ -1620,6 +1678,7 @@ const BOOKS = [
 				{ verses: 20 },
 			],
 		},
+		id: 58,
 	},
 	{
 		name: "1 Peter",
@@ -1634,6 +1693,7 @@ const BOOKS = [
 				{ verses: 14 },
 			],
 		},
+		id: 59,
 	},
 	{
 		name: "2 Peter",
@@ -1642,6 +1702,7 @@ const BOOKS = [
 			total_chapters: 3,
 			content: [{ verses: 21 }, { verses: 22 }, { verses: 18 }],
 		},
+		id: 60,
 	},
 	{
 		name: "1 John",
@@ -1656,21 +1717,25 @@ const BOOKS = [
 				{ verses: 21 },
 			],
 		},
+		id: 61,
 	},
 	{
 		name: "2 John",
 		aliases: ["2nd John", "Second John"],
 		meta: { total_chapters: 1, content: [{ verses: 14 }] },
+		id: 62,
 	},
 	{
 		name: "3 John",
 		aliases: ["3rd John", "Third John"],
 		meta: { total_chapters: 1, content: [{ verses: 16 }] },
+		id: 63,
 	},
 	{
 		name: "Jude",
 		aliases: [],
 		meta: { total_chapters: 1, content: [{ verses: 26 }] },
+		id: 64,
 	},
 	{
 		name: "Revelation",
@@ -1702,6 +1767,7 @@ const BOOKS = [
 				{ verses: 21 },
 			],
 		},
+		id: 65,
 	},
 ];
 export { BOOKS };

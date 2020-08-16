@@ -1,4 +1,12 @@
-import { isEmpty, get, head, split } from "lodash";
+import { isEmpty, get, head, last } from "lodash";
+import { BOOKS } from "../constants/books";
+
+const removeCopyrightText = (passage) => {
+	if (isEmpty(passage)) {
+		return;
+	}
+	last(passage).text = last(passage).text.replace("(ESV)", "");
+};
 const parseTextResponse = (response) => {
 	const passageResponse = get(response, "passages");
 	if (isEmpty(passageResponse)) {
@@ -14,8 +22,10 @@ const parseTextResponse = (response) => {
 		};
 		passage.push(verseInfo);
 	}
-
+	removeCopyrightText(passage);
 	return passage;
 };
-
-export { parseTextResponse };
+const getBookData = (name) => {
+	return head(BOOKS.filter((book) => name === book.name));
+};
+export { parseTextResponse, getBookData };
