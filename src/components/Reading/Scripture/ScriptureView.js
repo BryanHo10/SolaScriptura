@@ -3,12 +3,25 @@ import { Link, useParams } from "react-router-dom";
 import { isEmpty, get } from "lodash";
 import { Row, Container } from "react-bootstrap";
 import { getPassageText } from "../../../api/scripture";
+import { parseTextResponse } from "../../../utils/parse";
+import LoadingView from "../../Common/Loading";
 
 const ScriptureView = ({ bookId, chapterId }) => {
 	const [scriptureComponent, setScriptureComponent] = useState([]);
+	const [loadingState, setLoadingState] = useState(false);
+
 	useEffect(() => {
-		getPassageText(`${bookId} ${chapterId}`).then((data) => {
-			setScriptureComponent(get(data, "passages", []));
+		setLoadingState(true);
+		const config = {
+			passage: `${bookId} ${chapterId}`,
+			includeFootnotes: false,
+			includeFootnoteBody: false,
+			includeHeadings: false,
+		};
+		getPassageText(config).then((data) => {
+			const passage = parseTextResponse(data);
+			setScriptureComponent(passage);
+			setLoadingState(false);
 		});
 	}, []);
 	return (
@@ -17,7 +30,17 @@ const ScriptureView = ({ bookId, chapterId }) => {
 				<h3>
 					{bookId} {chapterId}
 				</h3>
-				{scriptureComponent}
+				{loadingState ? (
+					<LoadingView label="Loading Text..." />
+				) : (
+					<div>
+						{scriptureComponent.map((verse, index) => (
+							<>
+								<span>{verse.num}</span> <span>{verse.text}</span>
+							</>
+						))}
+					</div>
+				)}
 			</Row>
 		</Container>
 	);

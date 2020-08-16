@@ -1,0 +1,9 @@
+.loading-container {
+	height: 50vh;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+}
+.loading-container h3 {
+	margin-top: 20vh;
+}

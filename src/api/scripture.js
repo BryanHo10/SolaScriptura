@@ -11,11 +11,19 @@ const getSearchParams = (params) => {
 	return searchParams.join("&");
 };
 
-const getPassageText = (passage) => {
+const getPassageText = ({
+	passage,
+	includeFootnotes = true,
+	includeFootnoteBody = true,
+	includeHeadings = true,
+}) => {
 	const headers = getHeaders();
 	const result = fetch(
 		`${GetPassageText_URL}?${getSearchParams({
 			q: passage,
+			"include-footnote-body": includeFootnoteBody,
+			"include-footnotes": includeFootnotes,
+			"include-headings": includeHeadings,
 		})}`,
 		{ headers }
 	).then((response) => response.json());
