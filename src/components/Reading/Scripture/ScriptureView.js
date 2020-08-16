@@ -80,7 +80,7 @@ const ScriptureView = ({ bookId, chapterId }) => {
 		);
 	}
 	return (
-		<Container>
+		<Container fluid>
 			<Row className="scripture-view">
 				<h3>
 					{bookId} {chapterId}

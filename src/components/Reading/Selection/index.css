@@ -23,3 +23,9 @@
 	background-color: rgb(0, 69, 148);
 	transition: background-color 0.5s;
 }
+.stack-view {
+	display: block;
+}
+.stack-view .col-lg-3 {
+	width: 100%;
+}

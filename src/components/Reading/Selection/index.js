@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import classname from "classnames";
+import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 import { BOOKS } from "../../../constants/books";
 import "./index.css";
-import { useHistory } from "react-router-dom";
 
 const ChapterSelectionView = ({ bookId, count }) => {
 	const history = useHistory();
@@ -32,15 +33,18 @@ const ChapterSelectionView = ({ bookId, count }) => {
 	);
 };
 
-const SelectionView = (props) => {
+const SelectionView = ({ stacked, scrollable }) => {
 	const [selectedBook, setSelectedBook] = useState(null);
 	return (
-		<Container fluid>
-			<Row>
+		<Container
+			fluid
+			className={classname("py-2", { "scroll-view": scrollable })}
+		>
+			<Row className={classname("", { "stack-view": stacked })}>
 				{BOOKS.map((book, index) => {
 					const isSelected = selectedBook === book.name;
 					return (
-						<Col key={`book_${index}`} lg={3}>
+						<Col key={`book_${index}`} lg={stacked ? null : 3}>
 							<Card
 								className={classname("", { "book-selectable": !isSelected })}
 								onClick={() =>
@@ -67,5 +71,8 @@ const SelectionView = (props) => {
 	);
 };
 
-SelectionView.propTypes = {};
+SelectionView.propTypes = {
+	stacked: PropTypes.bool,
+	scrollable: PropTypes.bool,
+};
 export default SelectionView;
