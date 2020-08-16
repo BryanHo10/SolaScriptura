@@ -36,7 +36,7 @@ const ScriptureView = ({ bookId, chapterId }) => {
 		let nextBookId = bookInfo.name;
 		let nextChapterId;
 
-		if (chapterId === bookInfo.meta.total_chapters) {
+		if (chapterId === String(bookInfo.meta.total_chapters)) {
 			if (bookInfo.name !== last(BOOKS).name) {
 				nextBookId = BOOKS[bookInfo.id + 1].name;
 			}
@@ -53,11 +53,11 @@ const ScriptureView = ({ bookId, chapterId }) => {
 		let prevBookId = bookInfo.name;
 		let prevChapterId;
 
-		if (chapterId === 1) {
+		if (chapterId === String(1)) {
 			if (bookInfo.name !== head(BOOKS).name) {
 				prevBookId = BOOKS[bookInfo.id - 1].name;
 			}
-			prevChapterId = 1;
+			prevChapterId = BOOKS[bookInfo.id - 1].meta.total_chapters;
 		} else {
 			prevChapterId = parseInt(chapterId) - 1;
 		}
