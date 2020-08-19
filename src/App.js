@@ -40,7 +40,7 @@ const HomePage = (props) => {
 						</Col>
 						<Col>
 							<div>
-								<Link to="/memorize" className="App-link">
+								<Link to="/dashboard" className="App-link">
 									Go to Dashboard
 								</Link>
 							</div>
@@ -74,7 +74,7 @@ function App() {
 		<Router>
 			<Switch>
 				<Route exact path="/" component={HomePage} />
-				<Route exact path="/memorize" component={Dashboard} />
+				<Route exact path="/dashboard" component={Dashboard} />
 				<Route exact path="/bible" component={ReadingView} />
 				<Route path="/bible/:bookId/:chapterId" component={ReadingView} />
 				<Route path="*" component={ErrorPage} />

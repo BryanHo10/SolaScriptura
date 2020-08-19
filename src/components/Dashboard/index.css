@@ -1,0 +1,18 @@
+.display-card {
+	border: 0.5px solid rgb(53, 53, 53);
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px rgb(121, 121, 121);
+	height: 5em;
+	opacity: 0.5;
+	cursor: pointer;
+}
+.display-card:hover {
+	background-color: slategray;
+	color: white;
+	opacity: 1;
+	transition: background-color 0.2s, color 0.2s, opacity 0.2s;
+}
+
+.display-card .display-title {
+	margin-top: 1em;
+}

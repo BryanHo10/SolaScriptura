@@ -10,6 +10,7 @@ import NavigationView from "../../Common/Navigation";
 import ErrorView from "../../Common/Error";
 import { BOOKS } from "../../../constants/books";
 import { STORAGE_META } from "../../../constants/keys";
+import { saveVerse } from "../../../api/storage";
 
 const ScriptureView = ({ bookId, chapterId }) => {
 	const [scriptureComponent, setScriptureComponent] = useState([]);
@@ -79,7 +80,7 @@ const ScriptureView = ({ bookId, chapterId }) => {
 
 		history.push(`/bible/${prevBookId}/${prevChapterId}`);
 	};
-	const saveVerse = ({ num, text }) => {};
+
 	if (failureState) {
 		return (
 			<Container>
@@ -101,7 +102,7 @@ const ScriptureView = ({ bookId, chapterId }) => {
 							<span
 								className="verse-body"
 								key={`verse_${index}`}
-								onClick={() => saveVerse(verse)}
+								onClick={() => saveVerse(bookId, chapterId, verse)}
 							>
 								<span className="verse-num">{verse.num}</span>{" "}
 								<span className="verse-text">{verse.text}</span>
