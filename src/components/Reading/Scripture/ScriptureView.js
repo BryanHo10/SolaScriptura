@@ -9,6 +9,7 @@ import "./ScriptureView.css";
 import NavigationView from "../../Common/Navigation";
 import ErrorView from "../../Common/Error";
 import { BOOKS } from "../../../constants/books";
+import { STORAGE_META } from "../../../constants/keys";
 
 const ScriptureView = ({ bookId, chapterId }) => {
 	const [scriptureComponent, setScriptureComponent] = useState([]);
@@ -33,11 +34,17 @@ const ScriptureView = ({ bookId, chapterId }) => {
 			} else {
 				const passage = parseTextResponse(data);
 				setScriptureComponent(passage);
+
+				// Save State
+				persistState({ book: bookId, chapter: chapterId });
 				setLoadingState(false);
 			}
 		});
 	}, [bookId, chapterId]);
-
+	const persistState = ({ book, chapter }) => {
+		localStorage.setItem(STORAGE_META.LATEST_BOOK_ID, book);
+		localStorage.setItem(STORAGE_META.LATEST_CHAP_ID, chapter);
+	};
 	const goToNextChapter = () => {
 		const bookInfo = getBookData(bookId);
 
@@ -72,6 +79,7 @@ const ScriptureView = ({ bookId, chapterId }) => {
 
 		history.push(`/bible/${prevBookId}/${prevChapterId}`);
 	};
+	const saveVerse = ({ num, text }) => {};
 	if (failureState) {
 		return (
 			<Container>
@@ -90,7 +98,11 @@ const ScriptureView = ({ bookId, chapterId }) => {
 				) : (
 					<div className="scripture-body">
 						{scriptureComponent.map((verse, index) => (
-							<span className="verse-body" key={`verse_${index}`}>
+							<span
+								className="verse-body"
+								key={`verse_${index}`}
+								onClick={() => saveVerse(verse)}
+							>
 								<span className="verse-num">{verse.num}</span>{" "}
 								<span className="verse-text">{verse.text}</span>
 							</span>

@@ -17,6 +17,7 @@
 }
 .book-selectable {
 	cursor: pointer;
+	/* min-width: 188px; */
 }
 .book-selectable:hover {
 	color: white;

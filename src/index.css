@@ -18,3 +18,11 @@ code {
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
+.home-link {
+	font-size: 1.5em;
+	color: silver;
+}
+.home-link:hover {
+	color: rgb(133, 130, 130);
+	text-decoration: none;
+}
