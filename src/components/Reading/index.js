@@ -31,7 +31,9 @@ const ReadingView = (props) => {
 	}
 	return (
 		<div>
-			<Link to="/">Home</Link>
+			<Link to="/" className="home-link">
+				<FontAwesomeIcon icon={faHome} /> Home
+			</Link>
 			<SelectionView />
 		</div>
 	);
