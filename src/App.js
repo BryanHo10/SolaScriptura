@@ -38,14 +38,14 @@ const HomePage = (props) => {
 						<Col>
 							<img src={logo} className="App-logo" />
 						</Col>
-						<Col>
-							<div>
+						<Col className="navigate-link-container">
+							<div className="link-box">
 								<Link to="/dashboard" className="App-link">
 									Go to Dashboard
 								</Link>
 							</div>
 
-							<div>
+							<div className="link-box">
 								<Link to={bibleURL} className="App-link">
 									Go to Bible
 								</Link>

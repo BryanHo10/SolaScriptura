@@ -7,6 +7,7 @@
 	margin: 3px;
 	min-width: 54px;
 	max-width: 60px;
+	transition: background-color 0.5s;
 }
 .chapter-select .chapter-view:hover {
 	background-color: rgb(170, 170, 170);
@@ -17,7 +18,7 @@
 }
 .book-selectable {
 	cursor: pointer;
-	/* min-width: 188px; */
+	/* transition: background-color 0.5s, color 0.5s; */
 }
 .book-selectable:hover {
 	color: white;

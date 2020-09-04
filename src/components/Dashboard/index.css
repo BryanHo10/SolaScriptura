@@ -5,6 +5,7 @@
 	height: 5em;
 	opacity: 0.5;
 	cursor: pointer;
+	transition: background-color 0.2s, color 0.2s, opacity 0.2s;
 }
 .display-card.active {
 	background-color: rgb(88, 87, 182);

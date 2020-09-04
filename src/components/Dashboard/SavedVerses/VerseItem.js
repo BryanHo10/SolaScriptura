@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { Container, Row, Col } from "react-bootstrap";
 import "./VerseItem.css";
-import { removeVerse } from "../../../api/storage";
 
 const VerseItem = ({ onRemove, book, chapter, verseNum, verseText }) => {
 	return (
@@ -18,7 +17,7 @@ const VerseItem = ({ onRemove, book, chapter, verseNum, verseText }) => {
 						<p className="verse-text">{verseText}</p>
 					</div>
 				</Col>
-				<Col lg={1}>
+				<Col sm={1}>
 					<div className="text-center mt-3">
 						<FontAwesomeIcon
 							className="delete-icon"

@@ -8,6 +8,7 @@
 .scripture-view .scripture-body .verse-body {
 	padding: 5px;
 	cursor: pointer;
+	transition: background-color 0.2s, color 0.2s;
 }
 .scripture-view .scripture-body .verse-body:hover {
 	background-color: rgb(197, 135, 0);

@@ -21,8 +21,10 @@ code {
 .home-link {
 	font-size: 1.5em;
 	color: silver;
+	transition: color 0.2s;
 }
 .home-link:hover {
 	color: rgb(133, 130, 130);
 	text-decoration: none;
+	transition: color 0.2s;
 }

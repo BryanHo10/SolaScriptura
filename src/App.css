@@ -13,5 +13,27 @@
 }
 
 .App-link {
-	color: #61dafb;
+	color: #367936;
+	transition: color 0.2s;
+}
+/* .App-link:hover {
+	color: #4eaf4e;
+	text-decoration: none;
+	transition: color 0.2s;
+} */
+.navigate-link-container {
+	flex-direction: column;
+	display: flex;
+	justify-content: space-around;
+}
+
+.navigate-link-container .link-box {
+	border: 1px solid black;
+	border-radius: 15px;
+	cursor: pointer;
+}
+.navigate-link-container .link-box:hover .App-link {
+	color: #4eaf4e;
+	text-decoration: none;
+	transition: color 0.2s;
 }
