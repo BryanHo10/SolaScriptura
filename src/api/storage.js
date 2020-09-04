@@ -75,7 +75,16 @@ const getAllVerses = () => {
 	}
 	return allVerses.flat(Infinity);
 };
-
+const getChapterVerses = (book, chapter) => {
+	const serializedVerseCollection = JSON.parse(
+		localStorage.getItem(STORAGE_META.SAVED_VERSES)
+	);
+	if (isEmpty(serializedVerseCollection)) {
+		return {};
+	}
+	const chapterData = get(serializedVerseCollection, `${book}[${chapter}]`, {});
+	return chapterData;
+};
 const getSingleVerse = (book, chapter, num) => {
 	const serializedVerseCollection = localStorage.getItem(
 		STORAGE_META.SAVED_VERSES
@@ -88,4 +97,10 @@ const getSingleVerse = (book, chapter, num) => {
 
 	return get(verseCollection, `${book}[${chapter}][${num}]`, null);
 };
-export { saveVerse, removeVerse, getAllVerses, getSingleVerse };
+export {
+	saveVerse,
+	removeVerse,
+	getAllVerses,
+	getChapterVerses,
+	getSingleVerse,
+};

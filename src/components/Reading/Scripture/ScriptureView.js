@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Container } from "react-bootstrap";
+import classname from "classnames";
 import { last, head } from "lodash";
 import { useHistory } from "react-router-dom";
 import { getPassageText } from "../../../api/scripture";
@@ -10,10 +11,14 @@ import NavigationView from "../../Common/Navigation";
 import ErrorView from "../../Common/Error";
 import { BOOKS } from "../../../constants/books";
 import { STORAGE_META } from "../../../constants/keys";
-import { saveVerse } from "../../../api/storage";
+import { saveVerse, getChapterVerses } from "../../../api/storage";
 
 const ScriptureView = ({ bookId, chapterId }) => {
 	const [scriptureComponent, setScriptureComponent] = useState([]);
+	const [savedVerses, setSavedVerses] = useState(
+		Object.keys(getChapterVerses(bookId, chapterId))
+	);
+
 	const [loadingState, setLoadingState] = useState(false);
 	const [failureState, setFailureState] = useState(false);
 	const [errorMessage, setErrorMessage] = useState("");
@@ -41,6 +46,7 @@ const ScriptureView = ({ bookId, chapterId }) => {
 				setLoadingState(false);
 			}
 		});
+		setSavedVerses(Object.keys(getChapterVerses(bookId, chapterId)));
 	}, [bookId, chapterId]);
 	const persistState = ({ book, chapter }) => {
 		localStorage.setItem(STORAGE_META.LATEST_BOOK_ID, book);
@@ -100,7 +106,9 @@ const ScriptureView = ({ bookId, chapterId }) => {
 					<div className="scripture-body">
 						{scriptureComponent.map((verse, index) => (
 							<span
-								className="verse-body"
+								className={classname("verse-body", {
+									"saved-verse": savedVerses.includes(verse.num?.toString()),
+								})}
 								key={`verse_${index}`}
 								onClick={() => saveVerse(bookId, chapterId, verse)}
 							>

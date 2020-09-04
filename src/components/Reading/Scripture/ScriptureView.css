@@ -1,6 +1,7 @@
 .scripture-view {
 	margin-top: 5vh;
 }
+
 .scripture-view .scripture-body {
 	margin-top: 5vh;
 }
@@ -10,11 +11,19 @@
 	cursor: pointer;
 	transition: background-color 0.2s, color 0.2s;
 }
-.scripture-view .scripture-body .verse-body:hover {
+
+.scripture-view .scripture-body .saved-verse {
+	font-weight: 600;
+	color: green;
+}
+
+
+.scripture-view .scripture-body [class="verse-body"]:hover {
 	background-color: rgb(197, 135, 0);
 	color: white;
 	transition: background-color 0.2s, color 0.2s;
 }
+
 .scripture-view .scripture-body .verse-num {
 	font-size: 0.8em;
 	vertical-align: super;
