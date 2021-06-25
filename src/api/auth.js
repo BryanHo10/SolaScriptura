@@ -5,17 +5,22 @@ const supabase = createClient(
 	process.env.REACT_APP_SUPABASE_URL,
 	process.env.REACT_APP_SUPABASE_KEY
 );
-
-const UserSignUp = (email, password) => {
+const getUser = () => {
+	return supabase.auth.user();
+};
+const signOutUser = () => {
+	return supabase.auth.signOut();
+};
+const signUpUser = (email, password) => {
 	return supabase.auth.signUp({
 		email,
 		password,
 	});
 };
-const UserSignIn = (email, password) => {
+const signInUser = (email, password) => {
 	return supabase.auth.signIn({
 		email,
 		password,
 	});
 };
-export { UserSignUp, UserSignIn };
+export { getUser, signUpUser, signInUser, signOutUser };

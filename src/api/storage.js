@@ -1,5 +1,5 @@
-import { isEmpty, get } from "lodash";
-import { STORAGE_META } from "../constants/keys";
+import { isEmpty, get } from 'lodash';
+import { STORAGE_META } from 'constants/keys';
 
 const saveToLocalStorage = (storageKey, storageObject) => {
 	localStorage.setItem(storageKey, JSON.stringify(storageObject));
@@ -19,7 +19,6 @@ const saveVerse = (book, chapter, { num, text }) => {
 	};
 	if (isEmpty(get(verseCollection, `${book}[${chapter}][${num}]`, null))) {
 		let updateVerseCollection = { ...verseCollection };
-		console.log(updateVerseCollection);
 		if (!updateVerseCollection[book]) {
 			updateVerseCollection[book] = {};
 		}

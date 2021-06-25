@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import logo from './tree.png';
-import './App.css';
 import Dashboard from './components/Dashboard';
 import {
 	BrowserRouter as Router,
@@ -10,13 +9,15 @@ import {
 	Link,
 	useLocation,
 } from 'react-router-dom';
+import { Container, Card, Menu } from 'semantic-ui-react';
 import ReadingView from './components/Reading';
-import { Container, Row, Col } from 'react-bootstrap';
 import { STORAGE_META } from './constants/keys';
 import Login from './components/Login/Login';
+import { useUserContext } from './contexts/WithUserProfile';
 
 const HomePage = (props) => {
 	const [bibleURL, setBibleURL] = useState('/bible');
+	const [user] = useUserContext();
 
 	useEffect(() => {
 		const storedBookId = localStorage.getItem(STORAGE_META.LATEST_BOOK_ID);
@@ -26,37 +27,14 @@ const HomePage = (props) => {
 		}
 	}, []);
 
-	return <Login />;
-	return (
-		<div className="App">
-			<header className="App-header">
-				<Container>
-					<p>
-						All Scripture is breathed out by God and profitable for teaching,
-						for reproof, for correction, and for training in righteousness, that
-						the man of God may be complete, equipped for every good work.
-					</p>
-					<Row>
-						<Col>
-							<img src={logo} className="App-logo" alt="tree" />
-						</Col>
-						<Col className="navigate-link-container">
-							<div className="link-box">
-								<Link to="/dashboard" className="App-link">
-									Go to Dashboard
-								</Link>
-							</div>
+	if (isEmpty(user)) {
+		return <Login />;
+	}
 
-							<div className="link-box">
-								<Link to={bibleURL} className="App-link">
-									Go to Bible
-								</Link>
-							</div>
-						</Col>
-					</Row>
-				</Container>
-			</header>
-		</div>
+	return (
+		<Container>
+			<Dashboard />
+		</Container>
 	);
 };
 const ErrorPage = () => {
@@ -76,7 +54,6 @@ function App() {
 		<Router>
 			<Switch>
 				<Route exact path="/" component={HomePage} />
-				<Route exact path="/dashboard" component={Dashboard} />
 				<Route exact path="/bible" component={ReadingView} />
 				<Route path="/bible/:bookId/:chapterId" component={ReadingView} />
 				<Route path="*" component={ErrorPage} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	Container,
 	Card,
@@ -10,8 +10,8 @@ import {
 	Message,
 } from 'semantic-ui-react';
 import { isEmpty } from 'lodash';
-import { UserSignUp, UserSignIn } from '../../api/auth';
-import { sessionToken } from '../../constants/keys';
+import { signUpUser, signInUser } from 'api/auth';
+import { useUserContext } from 'contexts/WithUserProfile';
 import './Login.css';
 
 const SignUpView = ({ credentials, handleSignUp, updateUserCred }) => {
@@ -105,6 +105,7 @@ const SignInView = ({ credentials, handleSignIn, updateUserCred }) => {
 };
 
 const Login = () => {
+	const [, setUser] = useUserContext();
 	const [loading, setLoading] = useState(false);
 	const [userCred, setUserCred] = useState({
 		email: '',
@@ -117,13 +118,13 @@ const Login = () => {
 		confirmPass: '',
 		error: false,
 	});
+
 	const onSignin = () => {
 		setLoading(true);
 		const { email, pass } = userCred;
-		UserSignIn(email, pass).then(({ user, session, error }) => {
+		signInUser(email, pass).then(({ user, session, error }) => {
 			setLoading(false);
-			if (isEmpty(error))
-				sessionStorage.setItem(sessionToken, session.access_token);
+			if (isEmpty(error)) authorizeUser(user, session);
 
 			setUserCred((cred) => ({ ...cred, error: !isEmpty(error) }));
 		});
@@ -134,13 +135,16 @@ const Login = () => {
 		if (pass !== confirmPass) {
 			setNewUserCred((cred) => ({ ...cred, error: true }));
 		}
-		UserSignUp(email, pass).then(({ user, session, error }) => {
+		signUpUser(email, pass).then(({ user, session, error }) => {
 			setLoading(false);
-			if (isEmpty(error))
-				sessionStorage.setItem(sessionToken, session.access_token);
+			if (isEmpty(error)) authorizeUser(user, session);
 
 			setNewUserCred((cred) => ({ ...cred, error: !isEmpty(error) }));
 		});
+	};
+
+	const authorizeUser = (user) => {
+		setUser(user);
 	};
 	return (
 		<div>

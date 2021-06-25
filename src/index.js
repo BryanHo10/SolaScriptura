@@ -5,13 +5,16 @@ import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import WithUser from './contexts/WithUserProfile';
 
 if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
 }
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<WithUser>
+			<App />
+		</WithUser>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

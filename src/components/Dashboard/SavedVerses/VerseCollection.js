@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Container } from "react-bootstrap";
-import VerseItem from "./VerseItem";
-import { getAllVerses, removeVerse } from "../../../api/storage";
-import "./VerseCollection.css";
+import React, { useState } from 'react';
+import VerseItem from './VerseItem';
+import { getAllVerses, removeVerse } from 'api/storage';
+import { Container, Header } from 'semantic-ui-react';
+import './VerseCollection.css';
 
 const VerseCollection = () => {
 	const [savedVerses, setSavedVerses] = useState(getAllVerses());
@@ -11,10 +11,9 @@ const VerseCollection = () => {
 		removeVerse(book, chapter, { num, text });
 		setSavedVerses(getAllVerses());
 	};
-	console.log(savedVerses);
 	return (
-		<Container fluid className="verse-collection">
-			<h2>Saved Verses ({savedVerses.length})</h2>
+		<Container fluid textAlign="left">
+			<Header as="h2">Saved Verses ({savedVerses.length})</Header>
 			{savedVerses.map((verseData, index) => (
 				<VerseItem
 					onRemove={removeSelectedVerse}
