@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { isEmpty } from "lodash";
-import logo from "./tree.png";
-import "./App.css";
-import Dashboard from "./components/Dashboard";
+import React, { useEffect, useState } from 'react';
+import { isEmpty } from 'lodash';
+import logo from './tree.png';
+import './App.css';
+import Dashboard from './components/Dashboard';
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
 	Link,
 	useLocation,
-} from "react-router-dom";
-import ReadingView from "./components/Reading";
-import { Container, Row, Col } from "react-bootstrap";
-import { STORAGE_META } from "./constants/keys";
+} from 'react-router-dom';
+import ReadingView from './components/Reading';
+import { Container, Row, Col } from 'react-bootstrap';
+import { STORAGE_META } from './constants/keys';
+import Login from './components/Login/Login';
 
 const HomePage = (props) => {
-	const [bibleURL, setBibleURL] = useState("/bible");
+	const [bibleURL, setBibleURL] = useState('/bible');
 
 	useEffect(() => {
 		const storedBookId = localStorage.getItem(STORAGE_META.LATEST_BOOK_ID);
@@ -25,6 +26,7 @@ const HomePage = (props) => {
 		}
 	}, []);
 
+	return <Login />;
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -36,7 +38,7 @@ const HomePage = (props) => {
 					</p>
 					<Row>
 						<Col>
-							<img src={logo} className="App-logo" />
+							<img src={logo} className="App-logo" alt="tree" />
 						</Col>
 						<Col className="navigate-link-container">
 							<div className="link-box">

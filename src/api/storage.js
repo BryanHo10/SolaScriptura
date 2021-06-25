@@ -69,21 +69,34 @@ const getAllVerses = () => {
 	for (const book of Object.keys(serializedVerseCollection)) {
 		for (const verse_sets of Object.values(serializedVerseCollection[book])) {
 			if (!isEmpty(verse_sets)) {
-				allVerses.push(Object.values(verse_sets));
+				allVerses.push(
+					Object.values(verse_sets).filter((verse) => !isEmpty(verse))
+				);
 			}
 		}
 	}
 	return allVerses.flat(Infinity);
 };
-const getChapterVerses = (book, chapter) => {
+const getChapterVerseIndices = (book, chapter) => {
 	const serializedVerseCollection = JSON.parse(
 		localStorage.getItem(STORAGE_META.SAVED_VERSES)
 	);
 	if (isEmpty(serializedVerseCollection)) {
-		return {};
+		return [];
 	}
-	const chapterData = get(serializedVerseCollection, `${book}[${chapter}]`, {});
-	return chapterData;
+	const serializedChapterData = get(
+		serializedVerseCollection,
+		`${book}[${chapter}]`,
+		{}
+	);
+	let verseIndices = [];
+	for (const verse of Object.values(serializedChapterData)) {
+		if (!isEmpty(verse)) {
+			verseIndices.push(verse.verseNum);
+		}
+	}
+
+	return verseIndices;
 };
 const getSingleVerse = (book, chapter, num) => {
 	const serializedVerseCollection = localStorage.getItem(
@@ -101,6 +114,6 @@ export {
 	saveVerse,
 	removeVerse,
 	getAllVerses,
-	getChapterVerses,
+	getChapterVerseIndices,
 	getSingleVerse,
 };

@@ -11,12 +11,12 @@ import NavigationView from "../../Common/Navigation";
 import ErrorView from "../../Common/Error";
 import { BOOKS } from "../../../constants/books";
 import { STORAGE_META } from "../../../constants/keys";
-import { saveVerse, getChapterVerses } from "../../../api/storage";
+import { saveVerse, getChapterVerseIndices } from "../../../api/storage";
 
 const ScriptureView = ({ bookId, chapterId }) => {
 	const [scriptureComponent, setScriptureComponent] = useState([]);
 	const [savedVerses, setSavedVerses] = useState(
-		Object.keys(getChapterVerses(bookId, chapterId))
+		getChapterVerseIndices(bookId, chapterId)
 	);
 
 	const [loadingState, setLoadingState] = useState(false);
@@ -46,7 +46,7 @@ const ScriptureView = ({ bookId, chapterId }) => {
 				setLoadingState(false);
 			}
 		});
-		setSavedVerses(Object.keys(getChapterVerses(bookId, chapterId)));
+		setSavedVerses(getChapterVerseIndices(bookId, chapterId));
 	}, [bookId, chapterId]);
 	const persistState = ({ book, chapter }) => {
 		localStorage.setItem(STORAGE_META.LATEST_BOOK_ID, book);
@@ -86,7 +86,10 @@ const ScriptureView = ({ bookId, chapterId }) => {
 
 		history.push(`/bible/${prevBookId}/${prevChapterId}`);
 	};
-
+	const handleSaveVerse = (book, chapter, verse) => {
+		saveVerse(book, chapter, verse);
+		setSavedVerses(getChapterVerseIndices(book, chapter));
+	};
 	if (failureState) {
 		return (
 			<Container>
@@ -107,10 +110,10 @@ const ScriptureView = ({ bookId, chapterId }) => {
 						{scriptureComponent.map((verse, index) => (
 							<span
 								className={classname("verse-body", {
-									"saved-verse": savedVerses.includes(verse.num?.toString()),
+									"saved-verse": savedVerses.includes(verse.num),
 								})}
 								key={`verse_${index}`}
-								onClick={() => saveVerse(bookId, chapterId, verse)}
+								onClick={() => handleSaveVerse(bookId, chapterId, verse)}
 							>
 								<span className="verse-num">{verse.num}</span>{" "}
 								<span className="verse-text">{verse.text}</span>

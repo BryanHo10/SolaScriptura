@@ -1,7 +1,8 @@
 const STORAGE_META = {
-	LATEST_BOOK_ID: "latestBookId",
-	LATEST_CHAP_ID: "latestChapterId",
+	LATEST_BOOK_ID: 'latestBookId',
+	LATEST_CHAP_ID: 'latestChapterId',
 
-	SAVED_VERSES: "verseCollection",
+	SAVED_VERSES: 'verseCollection',
 };
-export { STORAGE_META };
+const sessionToken = 'session_token';
+export { STORAGE_META, sessionToken };

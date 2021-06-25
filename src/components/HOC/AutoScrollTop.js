@@ -31,7 +31,7 @@ const AutoScroll = ({
 				break;
 		}
 		window.scrollTo(options);
-	}, [bookId, chapterId]);
+	}, [bookId, chapterId, direction]);
 	return <>{children}</>;
 };
 export default AutoScroll;
