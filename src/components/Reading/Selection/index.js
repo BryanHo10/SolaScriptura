@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Row, Col, Card, Container } from "react-bootstrap";
-import classname from "classnames";
-import { useHistory } from "react-router-dom";
-import PropTypes from "prop-types";
-import { BOOKS } from "../../../constants/books";
-import "./index.css";
+import React, { useEffect, useState } from 'react';
+import { Row, Col, Card } from 'react-bootstrap';
+import { Container, Message } from 'semantic-ui-react';
+import classname from 'classnames';
+import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { BOOKS } from '../../../constants/books';
+import './index.css';
 
 const ChapterSelectionView = ({ bookId, count }) => {
 	const history = useHistory();
@@ -33,36 +34,32 @@ const ChapterSelectionView = ({ bookId, count }) => {
 	);
 };
 
-const SelectionView = ({ stacked, scrollable }) => {
+const SelectionView = ({ stacked, scrollable, hidden }) => {
 	const [selectedBook, setSelectedBook] = useState(null);
+	useEffect(() => {
+		if (!hidden) setSelectedBook(null);
+	}, [hidden]);
 	return (
-		<Container
-			fluid
-			className={classname("py-2", { "scroll-view": scrollable })}
-		>
-			<Row className={classname("", { "stack-view": stacked })}>
-				{BOOKS.map((book, index) => {
-					const isSelected = selectedBook === book.name;
+		<Container className={classname('py-2', { 'scroll-view': scrollable })}>
+			<Row className={classname('', { 'stack-view': stacked })}>
+				{BOOKS.map(({ name, meta }, index) => {
+					const isSelected = selectedBook === name;
 					return (
 						<Col key={`book_${index}`} lg={stacked ? null : 3}>
-							<Card
-								className={classname("", { "book-selectable": !isSelected })}
+							<Message
+								className={classname('', { 'book-selectable': !isSelected })}
 								onClick={() =>
-									isSelected
-										? null
-										: setSelectedBook((selectedBook) => book.name)
+									isSelected ? null : setSelectedBook((selectedBook) => name)
 								}
 							>
-								<Card.Body>
-									<Card.Title>{book.name}</Card.Title>
-									{book.name === selectedBook && (
-										<ChapterSelectionView
-											bookId={book.name}
-											count={book.meta.total_chapters}
-										/>
-									)}
-								</Card.Body>
-							</Card>
+								<Message.Header className="py-2">{name}</Message.Header>
+								{name === selectedBook && (
+									<ChapterSelectionView
+										bookId={name}
+										count={meta.total_chapters}
+									/>
+								)}
+							</Message>
 						</Col>
 					);
 				})}

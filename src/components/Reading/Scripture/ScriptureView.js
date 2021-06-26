@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Row, Container } from "react-bootstrap";
-import classname from "classnames";
-import { last, head } from "lodash";
-import { useHistory } from "react-router-dom";
-import { getPassageText } from "../../../api/scripture";
-import { parseTextResponse, getBookData } from "../../../utils/parse";
-import LoadingView from "../../Common/Loading";
-import "./ScriptureView.css";
-import NavigationView from "../../Common/Navigation";
-import ErrorView from "../../Common/Error";
-import { BOOKS } from "../../../constants/books";
-import { STORAGE_META } from "../../../constants/keys";
-import { saveVerse, getChapterVerseIndices } from "../../../api/storage";
+import React, { useState, useEffect } from 'react';
+// import { Row } from 'react-bootstrap';
+import { Container, Message } from 'semantic-ui-react';
+import classname from 'classnames';
+import { last, head } from 'lodash';
+import { useHistory } from 'react-router-dom';
+import { getPassageText } from 'api/scripture';
+import { parseTextResponse, getBookData } from 'utils/parse';
+import LoadingView from 'components/Common/Loading';
+import './ScriptureView.css';
+import NavigationView from 'components/Common/Navigation';
+import ErrorView from 'components/Common/Error';
+import { BOOKS } from 'constants/books';
+import { STORAGE_META } from 'constants/keys';
+import { saveVerse, getChapterVerseIndices } from 'api/storage';
 
 const ScriptureView = ({ bookId, chapterId }) => {
 	const [scriptureComponent, setScriptureComponent] = useState([]);
@@ -21,7 +22,7 @@ const ScriptureView = ({ bookId, chapterId }) => {
 
 	const [loadingState, setLoadingState] = useState(false);
 	const [failureState, setFailureState] = useState(false);
-	const [errorMessage, setErrorMessage] = useState("");
+	const [errorMessage, setErrorMessage] = useState('');
 
 	const history = useHistory();
 
@@ -98,31 +99,32 @@ const ScriptureView = ({ bookId, chapterId }) => {
 		);
 	}
 	return (
-		<Container fluid>
-			<Row className="scripture-view">
-				<h3>
+		<Container>
+			<Message size="big" floating className="scripture-view">
+				<Message.Header className="text-center">
 					{bookId} {chapterId}
-				</h3>
+				</Message.Header>
 				{loadingState ? (
 					<LoadingView label="Loading Text..." />
 				) : (
 					<div className="scripture-body">
 						{scriptureComponent.map((verse, index) => (
 							<span
-								className={classname("verse-body", {
-									"saved-verse": savedVerses.includes(verse.num),
+								className={classname('verse-body', {
+									'saved-verse': savedVerses.includes(verse.num),
 								})}
 								key={`verse_${index}`}
 								onClick={() => handleSaveVerse(bookId, chapterId, verse)}
 							>
-								<span className="verse-num">{verse.num}</span>{" "}
+								<span className="verse-num">{verse.num}</span>{' '}
 								<span className="verse-text">{verse.text}</span>
 							</span>
 						))}
 						<span>(ESV)</span>
 					</div>
 				)}
-			</Row>
+			</Message>
+
 			<NavigationView
 				onNextClick={goToNextChapter}
 				onPreviousClick={goToPrevChapter}
