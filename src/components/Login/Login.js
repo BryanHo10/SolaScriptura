@@ -53,7 +53,7 @@ const SignUpView = ({ credentials, handleSignUp, updateUserCred }) => {
 				iconPosition="left"
 				label="Confirm Password"
 				type="password"
-				value={credentials.pass}
+				value={credentials.confirmPass}
 				onChange={({ target }) =>
 					updateUserCred((cred) => ({
 						...cred,
