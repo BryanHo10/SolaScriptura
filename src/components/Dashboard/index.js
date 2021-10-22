@@ -17,6 +17,7 @@ import VerseCollection from './SavedVerses/VerseCollection';
 import { signOutUser } from 'api/auth';
 import { useUserContext } from 'contexts/WithUserProfile';
 import { faLongArrowAltUp } from '@fortawesome/free-solid-svg-icons';
+import StatsBoard from './ProgressChart/StatsBoard';
 
 const VIEW = {
 	SAVED_VERSES: 'saved',
@@ -97,6 +98,7 @@ const Dashboard = (props) => {
 			<hr />
 
 			{viewState === VIEW.SAVED_VERSES && <VerseCollection />}
+			{viewState === VIEW.PROGRESS_CHART && <StatsBoard />}
 		</Container>
 	);
 };
