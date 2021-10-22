@@ -23,7 +23,7 @@ const StatsBoard = () => {
 			<Header as="h2">Breakdown ({savedVerses.length})</Header>
 			<Row>
 				{BOOKS.map(({ name }, i) => (
-					<Col sm={3} key={i}>
+					<Col lg={3} key={i}>
 						<Header
 							className="py-2"
 							size="medium"
