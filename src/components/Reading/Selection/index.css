@@ -16,6 +16,11 @@
 .chapter-select .row {
 	justify-content: start;
 }
+.chapter-select {
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+}
 .book-selectable {
 	cursor: pointer;
 	/* transition: background-color 0.5s, color 0.5s; */
